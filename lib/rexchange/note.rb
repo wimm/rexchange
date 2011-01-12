@@ -10,9 +10,9 @@ module RExchange
       :subject =>'urn:schemas:httpmail:subject',
       :body => 'urn:schemas:httpmail:textdescription'
 
-     def self.search(path, conditions)
-     	raise NotImplementedError.new('Search not available for notes.')
-     end
+   def self.search(path, conditions)
+   	raise NotImplementedError.new('Search not available for notes.')
+   end
 
   end  
 end

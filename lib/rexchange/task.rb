@@ -20,9 +20,9 @@ module RExchange
       :status =>'http://schemas.microsoft.com/exchange/tasks/status',
       :state =>'http://schemas.microsoft.com/exchange/tasks/state'
 
-      def self.search(path, conditions)
-      	raise NotImplementedError.new('Search not available for tasks.')
-      end
+    def self.search(path, conditions)
+    	raise NotImplementedError.new('Search not available for tasks.')
+    end
 
   end
 end
