@@ -25,5 +25,9 @@ module RExchange
       :company => 'urn:schemas:contacts:o',
       :notes => 'urn:schemas:httpmail:textdescription'
 
-  end  
+      def self.search(path, conditions)
+      	raise NotImplementedError.new('Search not available for contacts.')
+      end
+
+  end
 end

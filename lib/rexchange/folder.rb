@@ -50,9 +50,7 @@ module RExchange
       end
     end
 
-    # Not Implemented!
     def search(conditions = {})
-      raise NotImplementedError.new('Bad Touch!')
       @content_type::find(@credentials, to_s, conditions)
     end
 

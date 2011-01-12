@@ -1,3 +1,9 @@
+-- 0.5.0:
+* Add option to search a calendar folder for appointments. Only 2 conditions
+  are presently supported, start_min and start_max times.
+* Add :required_attendees and :organizer to appointment attributes.
+* Clean up the rexchange.gemspec and remove files no longer used.
+
 -- 0.3.4:
 * Updated the README so it jives with the current version
 * Removed Folder::join since it's only used by Folder#to_s, and just used a simpler

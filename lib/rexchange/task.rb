@@ -2,9 +2,9 @@ require 'rexchange/generic_item'
 
 module RExchange
   class Task < GenericItem
-    
+
     set_folder_type 'task'
-   
+
     attribute_mappings :displayname => 'DAV:displayname',
       :created_at => 'DAV:creationdate', 
       :subject =>'urn:schemas:httpmail:subject',
@@ -19,8 +19,10 @@ module RExchange
       :priority =>'http://schemas.microsoft.com/mapi/priority',
       :status =>'http://schemas.microsoft.com/exchange/tasks/status',
       :state =>'http://schemas.microsoft.com/exchange/tasks/state'
-      
-     end  
-  
-  
-   end
+
+      def self.search(path, conditions)
+      	raise NotImplementedError.new('Search not available for tasks.')
+      end
+
+  end
+end

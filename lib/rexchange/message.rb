@@ -84,5 +84,9 @@ module RExchange
       end
     end
 
+    def self.search(path, conditions)
+    	raise NotImplementedError.new('Search not available for messages.')
+    end
+
   end
 end
