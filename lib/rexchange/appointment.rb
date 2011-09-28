@@ -37,8 +37,9 @@ module RExchange
     	:organizer => 'urn:schemas:calendar:organizer'
 
     # Conditions supported:
-    #   :start_min => Include appointments on or after Time value
-    #   :start_max => Include appointments before Time value
+    #   :start_min => Include appointments that end on or after Time value
+    #                 Use end instead of start to include overlapping appointments.
+    #   :start_max => Include appointments that start before Time value
     def self.search(path, conditions)
       query = <<-QBODY
          SELECT #{self::ATTRIBUTE_MAPPINGS.values.map { |f| '"' + f + '"' }.join(',')}
@@ -66,7 +67,7 @@ module RExchange
     # Only include appointments that start on or after the specified time.
     def self.start_min(time)
       <<-EXPRESSION
-        "urn:schemas:calendar:dtstart" &gt;= '#{time.utc.strftime("%Y/%m/%d %H:%M:%S")}'
+        "urn:schemas:calendar:dtend" &gt;= '#{time.utc.strftime("%Y/%m/%d %H:%M:%S")}'
       EXPRESSION
     end
 
