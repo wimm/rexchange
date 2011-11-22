@@ -100,6 +100,15 @@ module RExchange
       end
     end
 
+    # See http://www.ruby-forum.com/topic/208730#908342
+    def self.clean_encoding(str)
+      # Try it as UTF-8 directly
+      str.dup.force_encoding('UTF-8')
+    rescue EncodingError
+      # Force it to UTF-8, throwing out invalid bits
+      str.encode!( 'UTF-8', invalid: :replace, undef: :replace )
+    end
+
     # Retrieve an Array of items (such as Contact, Message, etc)
     def self.find(credentials, path, conditions = nil)
       qbody = <<-QBODY
@@ -114,7 +123,10 @@ module RExchange
 
         xpath_query = "//a:propstat[a:status/text() = 'HTTP/1.1 200 OK']/a:prop"
 
-        Document.new(response.body).elements.each(xpath_query) do |m|
+        # Force the encoding to UTF-8 so we can search it with an UTF-8 string.
+        response_body = clean_encoding(response.body)
+
+        Document.new(response_body).elements.each(xpath_query) do |m|
           items << self.new(credentials, m)
         end
       end
